@@ -1,0 +1,84 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--bg-primary);
+}
+
+.app-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Connection status bar */
+.connection-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 400;
+  padding: 0.4rem 1rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.connection-bar.offline {
+  background: rgba(239, 68, 68, 0.9);
+  color: white;
+}
+
+.connection-bar.reconnecting {
+  background: rgba(245, 158, 11, 0.9);
+  color: white;
+}
+
+/* ── Mobile (phones) ─────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .app-main {
+    position: relative;
+    flex-direction: row;
+  }
+
+  /* Each panel takes the full viewport */
+  .app-main > .sidebar,
+  .app-main > .chat-area {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Sidebar visible by default, slides left when hidden */
+  .app-main > .sidebar {
+    transform: translateX(0);
+    z-index: 10;
+    max-width: 100%;
+    border-right: none;
+    max-height: 100%;
+  }
+
+  .app-main > .sidebar.mobile-hidden {
+    transform: translateX(-100%);
+    pointer-events: none;
+  }
+
+  /* Chat hidden (off-screen right) by default */
+  .app-main > .chat-area {
+    transform: translateX(100%);
+    z-index: 10;
+  }
+
+  .app-main > .chat-area.mobile-visible {
+    transform: translateX(0);
+  }
+}
+

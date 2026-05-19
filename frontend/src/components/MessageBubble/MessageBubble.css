@@ -1,0 +1,232 @@
+.message-bubble-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.4rem;
+  animation: fadeIn 0.2s ease both;
+}
+
+.message-bubble-row.sent {
+  flex-direction: row-reverse;
+}
+
+.message-bubble-row.received {
+  flex-direction: row;
+}
+
+/* ── Bubble ─────────────────────────────────────────────────────────────────── */
+.bubble {
+  max-width: min(72%, 520px);
+  padding: 0.5rem 0.875rem;
+  border-radius: var(--radius-lg);
+  position: relative;
+  word-break: break-word;
+  line-height: 1.5;
+}
+
+.bubble.sent {
+  background: var(--bubble-sent);
+  border-bottom-right-radius: 4px;
+  color: white;
+}
+
+.bubble.received {
+  background: var(--bubble-received);
+  border: 1px solid var(--border-subtle);
+  border-bottom-left-radius: 4px;
+  color: var(--text-primary);
+}
+
+/* ── Text ───────────────────────────────────────────────────────────────────── */
+.bubble-text {
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+  margin-bottom: 0.2rem;
+}
+
+/* ── Meta ───────────────────────────────────────────────────────────────────── */
+.bubble-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.3rem;
+  font-size: 0.67rem;
+  opacity: 0.7;
+  margin-top: 0.1rem;
+}
+
+.bubble.sent .bubble-meta {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.bubble.received .bubble-meta {
+  color: var(--text-muted);
+}
+
+.status-icon {
+  font-size: 0.7rem;
+}
+
+/* ── Image message ───────────────────────────────────────────────────────────── */
+.bubble-image-wrap {
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  max-width: 260px;
+  margin-bottom: 0.3rem;
+  position: relative;
+}
+
+.bubble-image {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius-md);
+  transition: opacity var(--transition-fast);
+}
+
+.bubble-image:hover {
+  opacity: 0.9;
+}
+
+/* Download overlay on images */
+.bubble-img-download {
+  position: absolute;
+  bottom: 0.4rem;
+  right: 0.4rem;
+  background: rgba(0, 0, 0, 0.55);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: white;
+  padding: 0.2rem 0.45rem;
+  font-size: 0.8rem;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.bubble-image-wrap:hover .bubble-img-download {
+  opacity: 1;
+}
+
+/* ── Video message ───────────────────────────────────────────────────────────── */
+.bubble-video-wrap {
+  max-width: 300px;
+  margin-bottom: 0.3rem;
+}
+
+.bubble-video {
+  width: 100%;
+  border-radius: var(--radius-md);
+  display: block;
+  background: #000;
+  max-height: 220px;
+}
+
+.bubble-file-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  font-size: 0.78rem;
+  opacity: 0.8;
+}
+
+
+/* ── File message ────────────────────────────────────────────────────────────── */
+.bubble-file {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.1rem 0;
+}
+
+.bubble-file-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.bubble-file-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.bubble-file-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bubble-file-size {
+  font-size: 0.72rem;
+  opacity: 0.7;
+  margin-top: 0.1rem;
+}
+
+.btn-download {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  color: inherit;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--transition-fast);
+  text-decoration: none;
+}
+
+.btn-download:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Context menu ─────────────────────────────────────────────────────────────── */
+.bubble-context-menu {
+  position: absolute;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  z-index: 50;
+  min-width: 140px;
+  animation: fadeIn 0.15s ease;
+}
+
+.bubble-context-menu.sent {
+  right: 0;
+  top: 100%;
+}
+
+.bubble-context-menu.received {
+  left: 0;
+  top: 100%;
+}
+
+.context-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.875rem;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.context-menu-item:hover {
+  background: var(--bg-glass-hover);
+  color: var(--text-primary);
+}
+
+/* ── Failed state ────────────────────────────────────────────────────────────── */
+.bubble.failed {
+  opacity: 0.7;
+}
+
+.bubble-failed-notice {
+  font-size: 0.7rem;
+  color: var(--danger);
+  margin-top: 0.2rem;
+}
